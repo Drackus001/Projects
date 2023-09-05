@@ -5,22 +5,7 @@
   <div *ngIf="control.errors.required">
     <small>*This field is required</small>
   </div>
-  <div *ngIf="control.errors.unique">
-    <small>{{ control.errors.unique }}</small>
-  </div>
-  <div *ngIf="control.errors.lessThen">
-    <small>{{ control.errors.lessThen }}</small>
-  </div>
-  <div *ngIf="control.errors.greaterThan">
-    <small>{{ control.errors.greaterThan }}</small>
-  </div>
   <div *ngIf="control.errors.email">
     <small>*Type Valid email</small>
-  </div>
-  <div *ngIf="control.errors.mobile">
-    <small>{{ control.errors.mobile }}</small>
-  </div>
-  <div *ngIf="control.errors.confirmPassword">
-    <small>{{ control.errors.confirmPassword }}</small>
   </div>
 </div>
