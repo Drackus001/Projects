@@ -27,12 +27,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let todo of todos">
-          <th>{{ todo.Title }}</th>
-          <td>{{ todo.CreatedAt }}</td>
-          <td>{{ todo.IsCompleted }}</td>
-          <td>{{ todo.CompletedAt }}</td>
-        </tr>
+        <ng-container *ngIf="todos$ | async as todos; else pending">
+          <tr *ngFor="let todo of todos">
+            <th>{{ todo.title }}</th>
+            <td>{{ todo.createdAt }}</td>
+            <td>{{ todo.isCompleted }}</td>
+            <td>{{ todo.completedAt }}</td>
+          </tr>
+        </ng-container>
+
+        <ng-template #pending>
+          <div>pending</div>
+        </ng-template>
       </tbody>
     </table>
   </div>
