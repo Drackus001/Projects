@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApp.API.Data;
+using TodoApp.API.Models;
 
 namespace TodoApp.API.Controllers
 {
@@ -19,6 +20,17 @@ namespace TodoApp.API.Controllers
         {
             var todos = await _appDbContext.Todos.ToListAsync();
             return Ok(todos);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddTodo(Todo todo)
+        {
+            todo.Id = Guid.NewGuid();
+
+            _appDbContext.Todos.Add(todo);
+            await _appDbContext.SaveChangesAsync();
+
+            return Ok(todo);
         }
     }
 }
