@@ -27,11 +27,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+        <tr *ngFor="let todo of todos">
+          <th>{{ todo.Title }}</th>
+          <td>{{ todo.CreatedAt }}</td>
+          <td>{{ todo.IsCompleted }}</td>
+          <td>{{ todo.CompletedAt }}</td>
         </tr>
       </tbody>
     </table>
