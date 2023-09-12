@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <h2>Add Todo</h2>
-    <form>
+    <form #form="ngForm" (ngSubmit)="addTodo()">
       <div class="mb-3">
         <label for="task" class="form-label">Task</label>
         <input
@@ -9,6 +9,8 @@
           class="form-control"
           id="task"
           aria-describedby="task"
+          name="title"
+          [(ngModel)]="newTodo.title"
         />
       </div>
 
@@ -27,18 +29,12 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngIf="todos$ | async as todos; else pending">
-          <tr *ngFor="let todo of todos">
-            <th>{{ todo.title }}</th>
-            <td>{{ todo.createdAt }}</td>
-            <td>{{ todo.isCompleted }}</td>
-            <td>{{ todo.completedAt }}</td>
-          </tr>
-        </ng-container>
-
-        <ng-template #pending>
-          <div>pending</div>
-        </ng-template>
+        <tr *ngFor="let todo of todos">
+          <th>{{ todo.title }}</th>
+          <td>{{ todo.createdAt | date : "dd-MM-yyyy hh:mm a" }}</td>
+          <td>{{ todo.isCompleted }}</td>
+          <td>{{ todo.completedAt | date : "dd-MM-yyyy hh:mm a" }}</td>
+        </tr>
       </tbody>
     </table>
   </div>

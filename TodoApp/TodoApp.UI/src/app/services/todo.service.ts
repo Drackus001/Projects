@@ -14,4 +14,10 @@ export class TodoService {
   getAllTodos(): Observable<Todo[]> {
     return this.http.get<Todo[]>(this.baseApiURL + '/api/todo');
   }
+
+  addTodo(newTodo: Todo): Observable<Todo> {
+    // Empty Guid
+    newTodo.id = '00000000-0000-0000-0000-000000000000';
+    return this.http.post<Todo>(this.baseApiURL + '/api/todo', newTodo);
+  }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Todo } from 'src/app/models/todo.models';
 import { TodoService } from 'src/app/services/todo.service';
 
@@ -9,12 +8,41 @@ import { TodoService } from 'src/app/services/todo.service';
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnInit {
-  public todos$!: Observable<Todo[]>;
+  public todos: Todo[] = [];
+  public newTodo: Todo = this.resetNewTodo();
 
   constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
-    console.log('Hellow');
-    this.todos$ = this.todoService.getAllTodos();
+    console.log('C::Todos => OnInit()');
+    this.getAllTodos();
+  }
+
+  addTodo(): void {
+    console.log(this.newTodo);
+    this.todoService.addTodo(this.newTodo).subscribe({
+      next: (todo) => {
+        this.getAllTodos();
+      },
+    });
+  }
+
+  private getAllTodos(): void {
+    this.todoService.getAllTodos().subscribe({
+      next: (todos) => {
+        this.todos = todos;
+      },
+    });
+  }
+
+  private resetNewTodo(): Todo {
+    let tempTodo: Todo = {
+      id: '',
+      createdAt: new Date(),
+      title: '',
+      isCompleted: false,
+      completedAt: new Date(),
+    };
+    return tempTodo;
   }
 }

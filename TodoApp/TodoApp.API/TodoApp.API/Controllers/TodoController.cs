@@ -26,6 +26,7 @@ namespace TodoApp.API.Controllers
         public async Task<IActionResult> AddTodo(Todo todo)
         {
             todo.Id = Guid.NewGuid();
+            todo.IsCompleted = false;
 
             _appDbContext.Todos.Add(todo);
             await _appDbContext.SaveChangesAsync();
