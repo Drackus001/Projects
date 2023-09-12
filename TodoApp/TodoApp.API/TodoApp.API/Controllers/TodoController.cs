@@ -32,5 +32,23 @@ namespace TodoApp.API.Controllers
 
             return Ok(todo);
         }
+
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> UpdateTodo([FromRoute] Guid id, Todo todoUpdateRequest)
+        {
+            var todo = await _appDbContext.Todos.FindAsync(id);
+            if (todo == null)
+            {
+                return NotFound("Todo not found");
+            }
+
+            todo.IsCompleted = todoUpdateRequest.IsCompleted;
+            todo.CompletedAt = DateTime.Now;
+
+            await _appDbContext.SaveChangesAsync();
+
+            return Ok(todo);
+        }
     }
 }
