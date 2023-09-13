@@ -45,7 +45,7 @@ namespace TodoApp.API.Controllers
             }
 
             todo.IsCompleted = todoUpdateRequest.IsCompleted;
-            todo.CompletedAt = DateTime.Now;
+            //todo.CompletedAt = DateTime.Now;
 
             await _appDbContext.SaveChangesAsync();
 

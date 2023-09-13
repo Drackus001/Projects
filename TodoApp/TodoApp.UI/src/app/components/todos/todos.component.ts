@@ -23,6 +23,16 @@ export class TodosComponent implements OnInit {
     this.todoService.addTodo(this.newTodo).subscribe({
       next: (todo) => {
         this.getAllTodos();
+        this.newTodo.title = '';
+      },
+    });
+  }
+
+  onCompletedChange(id: string, todo: Todo): void {
+    todo.isCompleted = !todo.isCompleted;
+    this.todoService.updateTodo(id, todo).subscribe({
+      next: (response) => {
+        this.getAllTodos();
       },
     });
   }

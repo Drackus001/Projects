@@ -20,4 +20,9 @@ export class TodoService {
     newTodo.id = '00000000-0000-0000-0000-000000000000';
     return this.http.post<Todo>(this.baseApiURL + '/api/todo', newTodo);
   }
+
+  updateTodo(id: string, todo: Todo): Observable<Todo> {
+    return this.http.put<Todo>(this.baseApiURL + '/api/todo/' + id, todo);
+  }
+
 }

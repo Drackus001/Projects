@@ -25,15 +25,23 @@
           <th scope="col">Task</th>
           <th scope="col">Created Date</th>
           <th scope="col">Is Completed</th>
-          <th scope="col">Completed Date</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let todo of todos">
           <th>{{ todo.title }}</th>
           <td>{{ todo.createdAt | date : "dd-MM-yyyy hh:mm a" }}</td>
-          <td>{{ todo.isCompleted }}</td>
-          <td>{{ todo.completedAt | date : "dd-MM-yyyy hh:mm a" }}</td>
+          <td>
+            <input
+              type="checkbox"
+              name="isCompleted"
+              id="isCompleted"
+              [checked]="todo.isCompleted"
+              [disabled]="todo.isCompleted"
+              (change)="onCompletedChange(todo.id, todo)"
+            />
+          </td>
         </tr>
       </tbody>
     </table>
