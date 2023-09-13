@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <h2>My Deleted Todo's</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Task</th>
+          <th scope="col">Created Date</th>
+          <th scope="col">Deleted Date</th>
+          <th scope="col">Is Deleted</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todo of todos">
+          <td [class.stroke]="todo.isDeleted">{{ todo.title }}</td>
+          <td>{{ todo.createdAt | date : "dd-MM-yyyy hh:mm a" }}</td>
+          <td>{{ todo.deletedDate | date : "dd-MM-yyyy hh:mm a" }}</td>
+          <td>
+            {{ todo.isDeleted }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

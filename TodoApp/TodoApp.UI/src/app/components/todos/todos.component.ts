@@ -14,12 +14,13 @@ export class TodosComponent implements OnInit {
   constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
-    console.log('C::Todos => OnInit()');
+    console.log('@Components>>Todos => OnInit()');
     this.getAllTodos();
   }
 
   addTodo(): void {
     console.log(this.newTodo);
+    this.newTodo.createdAt = new Date();
     this.todoService.addTodo(this.newTodo).subscribe({
       next: (todo) => {
         this.getAllTodos();
@@ -30,6 +31,7 @@ export class TodosComponent implements OnInit {
 
   onCompletedChange(id: string, todo: Todo): void {
     todo.isCompleted = !todo.isCompleted;
+    todo.completedAt = new Date();
     this.todoService.updateTodo(id, todo).subscribe({
       next: (response) => {
         this.getAllTodos();
@@ -63,6 +65,8 @@ export class TodosComponent implements OnInit {
       title: '',
       isCompleted: false,
       completedAt: new Date(),
+      isDeleted: false,
+      deletedDate: new Date(),
     };
     return tempTodo;
   }

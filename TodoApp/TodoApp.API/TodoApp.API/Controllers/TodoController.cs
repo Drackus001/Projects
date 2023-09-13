@@ -25,6 +25,17 @@ namespace TodoApp.API.Controllers
             return Ok(todos);
         }
 
+        [HttpGet]
+        [Route("deleted")]
+        public async Task<IActionResult> GetAllDeletedTodos()
+        {
+            var todos = await _appDbContext.Todos
+                .Where(t => t.IsDeleted == true)
+                .OrderByDescending(t => t.CreatedAt)
+                .ToListAsync();
+            return Ok(todos);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddTodo(Todo todo)
         {

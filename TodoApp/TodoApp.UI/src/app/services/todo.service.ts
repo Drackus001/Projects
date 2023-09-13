@@ -15,6 +15,10 @@ export class TodoService {
     return this.http.get<Todo[]>(this.baseApiURL + '/api/todo');
   }
 
+  getAllDeletedTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(this.baseApiURL + '/api/todo/deleted');
+  }
+
   addTodo(newTodo: Todo): Observable<Todo> {
     // Empty Guid
     newTodo.id = '00000000-0000-0000-0000-000000000000';
