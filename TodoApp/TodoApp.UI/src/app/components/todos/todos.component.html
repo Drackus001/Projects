@@ -30,7 +30,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let todo of todos">
-          <th>{{ todo.title }}</th>
+          <td [class.stroke]="todo.isCompleted">{{ todo.title }}</td>
           <td>{{ todo.createdAt | date : "dd-MM-yyyy hh:mm a" }}</td>
           <td>
             <input
@@ -41,6 +41,9 @@
               [disabled]="todo.isCompleted"
               (change)="onCompletedChange(todo.id, todo)"
             />
+          </td>
+          <td>
+            <a [routerLink]="[]" (click)="deleteTodo(todo.id)">Delete</a>
           </td>
         </tr>
       </tbody>

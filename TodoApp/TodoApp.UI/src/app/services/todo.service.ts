@@ -25,4 +25,7 @@ export class TodoService {
     return this.http.put<Todo>(this.baseApiURL + '/api/todo/' + id, todo);
   }
 
+  deleteTodo(id: string): Observable<Todo> {
+    return this.http.delete<Todo>(this.baseApiURL + '/api/todo/' + id);
+  }
 }

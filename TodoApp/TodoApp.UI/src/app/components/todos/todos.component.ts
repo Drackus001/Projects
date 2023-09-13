@@ -37,6 +37,17 @@ export class TodosComponent implements OnInit {
     });
   }
 
+  deleteTodo(id: string): void {
+    this.todoService.deleteTodo(id).subscribe({
+      next: (response) => {
+        this.getAllTodos();
+      },
+      error(err) {
+        console.error(err);
+      },
+    });
+  }
+
   private getAllTodos(): void {
     this.todoService.getAllTodos().subscribe({
       next: (todos) => {
