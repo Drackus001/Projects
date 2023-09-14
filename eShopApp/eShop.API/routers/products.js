@@ -2,7 +2,7 @@ const { Product } = require("../models/product");
 const express = require("express");
 const router = express.Router();
 
-// http://localhost:3000/api/v1/products
+// Route: `/products`
 router.get(`/`, async (req, res) => {
   const productList = await Product.find();
 
