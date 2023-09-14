@@ -2,13 +2,19 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
+require("dotenv/config");
+
+// Cors
+app.use(cors());
+app.options("*", cors());
+
+// Router imports
 const productsRouter = require("./routers/products");
 const ordersRouter = require("./routers/orders");
 const categoriesRouter = require("./routers/categories");
 const usersRouter = require("./routers/users");
-
-require("dotenv/config");
 
 // CONST
 const API = process.env.API_URL;
