@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const mongoose = require("mongoose");
 
 require("dotenv/config");
 
@@ -24,6 +25,15 @@ app.post(`${API}/product`, (req, res) => {
   const newProduct = req.body;
   res.send(newProduct);
 });
+
+mongoose
+  .connect(process.env.CONNECTION_STRING)
+  .then(() => {
+    console.log("Database Connection is Ready...");
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 app.listen(3000, () => {
   console.log("Server is running at http://localhost:3000");
